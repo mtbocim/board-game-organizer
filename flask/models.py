@@ -24,11 +24,23 @@ class Game(db.Model):
         db.String(30),
         nullable = False
     )
+    
+    min_players = db.Column(
+        db.Integer,
+        nullable = False
+    )
+    
+    max_players = db.Column(
+        db.Integer,
+        nullable = True
+    )
 
     def serialize(self):
         """Serialize to dicitionary"""
 
         return {
-            "id": self.id,
-            "name": self.name,
+            "id":self.id,
+            "name":self.name,
+            "min_players":self.min_players,
+            "max_players":self.max_players if self.max_players != None else ''
         }
